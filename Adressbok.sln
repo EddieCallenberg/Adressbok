@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adressbok", "Adressbok\Adressbok.csproj", "{F36F3DA7-7235-40BE-82D1-0F7E212F5185}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adressbok", "Adressbok\Adressbok.csproj", "{F36F3DA7-7235-40BE-82D1-0F7E212F5185}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adressbok.Tests", "Adressbok.Tests\Adressbok.Tests.csproj", "{3B4C2FAC-8D8E-4A42-8459-90701B72E929}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F36F3DA7-7235-40BE-82D1-0F7E212F5185}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F36F3DA7-7235-40BE-82D1-0F7E212F5185}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F36F3DA7-7235-40BE-82D1-0F7E212F5185}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B4C2FAC-8D8E-4A42-8459-90701B72E929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B4C2FAC-8D8E-4A42-8459-90701B72E929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B4C2FAC-8D8E-4A42-8459-90701B72E929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B4C2FAC-8D8E-4A42-8459-90701B72E929}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
