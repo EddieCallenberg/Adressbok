@@ -3,6 +3,8 @@ using Moq;
 using Adressbok.Services;
 using Adressbok.Models;
 using Newtonsoft.Json;
+using Adressbok.Interfaces;
+using System.Reflection;
 
 public class FileServiceTests
 {
@@ -39,3 +41,22 @@ public class FileServiceTests
     }
 }
 
+public class ContactServiceTests
+{
+    [Fact]
+    public void SaveContactToContactlist_ShouldNotAddContact_WhenAlreadyExists()
+    {
+        // Arrange
+        var fileServiceMock = new Mock<IFileService>();
+        var contactService = new ContactService(); 
+
+        fileServiceMock.Setup(x => x.SaveContactToFile(It.IsAny<string>())).Returns(true);
+        fileServiceMock.Setup(x => x.GetContactFromFile()).Returns("{\"Email\":\"minnie@domain.com\"}");
+
+        // Act
+        contactService.SaveContactToContactlist(new Contact("Minnie", "Lind", "0726044647", "minnie@domain.com", "Adressgatan 11"));
+
+        // Assert
+        fileServiceMock.Verify(x => x.SaveContactToFile(It.IsAny<string>()), Times.Never);
+    }
+}

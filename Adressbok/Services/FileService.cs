@@ -7,7 +7,7 @@ public interface IFileService
     bool SaveContactToFile(string contact);
     string GetContactFromFile();
 }
-internal class FileService(string filePath) : IFileService
+public class FileService(string filePath) : IFileService
 {
     private readonly string _filePath = filePath;
 

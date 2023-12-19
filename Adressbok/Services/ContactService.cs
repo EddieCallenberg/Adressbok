@@ -11,9 +11,9 @@ namespace Adressbok.Services
 
         public void SaveContactToContactlist(Contact contact)
         {
+            LoadContacts();
             try
             {
-                LoadContacts();
                 if (!_contactList.Any(c => c.Email == contact.Email))
                 {
                     _contactList.Add(contact);
@@ -95,6 +95,7 @@ namespace Adressbok.Services
         public void RemoveContact()
         {
             Console.Clear();
+            LoadContacts();
             Console.Write("Enter the Email of the contact you would like to remove: ");
             string? emailToRemove = Console.ReadLine();
 
