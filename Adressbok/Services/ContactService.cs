@@ -13,7 +13,7 @@ namespace Adressbok.Services
         {
             try
             {
-                
+                LoadContacts();
                 if (!_contactList.Any(c => c.Email == contact.Email))
                 {
                     _contactList.Add(contact);
@@ -21,6 +21,18 @@ namespace Adressbok.Services
                 }
             }
             catch (Exception ex) { Debug.WriteLine(ex); }
+        }
+        private void LoadContacts()
+        {
+            var existingContactsJson = _fileService.GetContactFromFile();
+            if (!string.IsNullOrEmpty(existingContactsJson))
+            {
+                _contactList = JsonConvert.DeserializeObject<List<Contact>>(existingContactsJson);
+            }
+            else
+            {
+                _contactList = new List<Contact>();
+            }
         }
 
         public IEnumerable<Contact> GetAllContacts()

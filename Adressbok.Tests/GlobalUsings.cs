@@ -1,6 +1,8 @@
 using Xunit;
 using Moq;
 using Adressbok.Services;
+using Adressbok.Models;
+using Newtonsoft.Json;
 
 public class FileServiceTests
 {
@@ -9,7 +11,7 @@ public class FileServiceTests
     {
         // Arrange
         var filePath = "testfile.txt";
-        var contact = "John Doe";
+        var contact = "Test Person";
         var mockFileService = new Mock<IFileService>();
         mockFileService.Setup(x => x.SaveContactToFile(contact)).Returns(true);
 
@@ -25,7 +27,7 @@ public class FileServiceTests
     {
         // Arrange
         var filePath = "testfile.txt";
-        var contact = "John Doe";
+        var contact = "Test Person";
         var mockFileService = new Mock<IFileService>();
         mockFileService.Setup(x => x.GetContactFromFile()).Returns(contact);
 
@@ -36,3 +38,4 @@ public class FileServiceTests
         Assert.Equal(contact, result);
     }
 }
+

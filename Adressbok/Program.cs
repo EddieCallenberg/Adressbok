@@ -13,10 +13,6 @@ internal class Program
         contactService.SaveContactToContactlist(defaultContact1);
         contactService.SaveContactToContactlist(defaultContact2);
 
-        bool isRunning = true;
-        while (isRunning)
-        {
-            menuService.ShowMenu();
-        }
+        menuService.ShowMenu();
     }
 }
