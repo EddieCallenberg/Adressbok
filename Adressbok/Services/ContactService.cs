@@ -56,21 +56,21 @@ namespace Adressbok.Services
             Console.Clear();
             Console.WriteLine("Add new contact:");
             Console.Write("Fist name: ");
-            string firstName = Console.ReadLine();
+            string? firstName = Console.ReadLine();
 
             Console.Write("Last name: ");
-            string lastName = Console.ReadLine();
+            string? lastName = Console.ReadLine();
 
             Console.Write("Phone number: ");
-            string phoneNumber = Console.ReadLine();
+            string? phoneNumber = Console.ReadLine();
 
             Console.Write("Email: ");
-            string email = Console.ReadLine();
+            string? email = Console.ReadLine();
 
             Console.Write("Adress: ");
-            string address = Console.ReadLine();
+            string? address = Console.ReadLine();
 
-            Contact newContact = new Contact(firstName, lastName, phoneNumber, email, address);
+            Contact? newContact = new Contact(firstName, lastName, phoneNumber, email, address);
 
             SaveContactToContactlist(newContact);
             Console.Clear();
@@ -84,9 +84,9 @@ namespace Adressbok.Services
         {
             Console.Clear();
             Console.Write("Enter the Email of the contact you would like to remove: ");
-            string emailToRemove = Console.ReadLine();
+            string? emailToRemove = Console.ReadLine();
 
-            Contact contactToRemove = _contactList.FirstOrDefault(c => c.Email == emailToRemove);
+            Contact? contactToRemove = _contactList.FirstOrDefault(c => c.Email == emailToRemove);
 
             if (contactToRemove != null)
             {                

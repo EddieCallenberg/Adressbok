@@ -34,7 +34,6 @@ internal class FileService(string filePath) : IFileService
             {
                 using var sr = new StreamReader(_filePath);
                 return sr.ReadToEnd();
-                sr.Close();
             }
         }
         catch (Exception ex) { Debug.WriteLine(ex); }

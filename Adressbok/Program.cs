@@ -8,7 +8,7 @@ internal class Program
         var contactService = new ContactService();
         var menuService = new MenuService();
         Contact defaultContact1 = new Contact("Eddie", "Callenberg", "0735063585", "eddie@domain.com", "Adressgatan 11");
-        Contact defaultContact2 = new Contact("Minnie", "Lind", "0726044647", "minnie@domanin.com", "Adressgatan 12");
+        Contact defaultContact2 = new Contact("Minnie", "Lind", "0726044647", "minnie@domanin.com", "Adressgatan 11");
 
         contactService.SaveContactToContactlist(defaultContact1);
         contactService.SaveContactToContactlist(defaultContact2);
