@@ -172,6 +172,10 @@ namespace Adressbok.Services
                 Console.ReadKey();
             }
         }
+
+        /// <summary>
+        /// Hittar en specifik kontakt med hjälp av e-postadress.
+        /// </summary>
         public void ShowSpecificContact()
         {
             Console.Clear();
