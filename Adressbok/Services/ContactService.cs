@@ -4,11 +4,51 @@ using System.Diagnostics;
 
 namespace Adressbok.Services
 {
-    public class ContactService
+    /// <summary>
+    /// Interface för att hantera kontakter.
+    /// </summary>
+    public interface IContactService
     {
-        private readonly FileService _fileService = new FileService(@"C:\CSharp-projects-school\contacts.json");
+        /// <summary>
+        /// Lägger till en ny kontakt.
+        /// </summary>
+        void AddContact();
+
+        /// <summary>
+        /// Hämtar alla kontakter.
+        /// </summary>
+        IEnumerable<Contact> GetAllContacts();
+
+        /// <summary>
+        /// Tar bort en kontakt.
+        /// </summary>
+        void RemoveContact();
+
+        /// <summary>
+        /// Sparar en kontakt till kontaktlistan.
+        /// </summary>
+        void SaveContactToContactlist(Contact contact);
+    }
+
+    /// <summary>
+    /// Implementering av IContactService.
+    /// </summary>
+    public class ContactService : IContactService
+    {
+        private readonly FileService _fileService;
         private List<Contact> _contactList = new List<Contact>();
 
+        /// <summary>
+        /// Konstruktor som tar emot en FileService och initierar kontaktlistan.
+        /// </summary>
+        public ContactService(FileService fileService)
+        {
+            _fileService = fileService;
+        }
+
+        /// <summary>
+        /// Sparar en kontakt till kontaktlistan om den inte redan finns.
+        /// </summary>
         public void SaveContactToContactlist(Contact contact)
         {
             LoadContacts();
@@ -22,7 +62,11 @@ namespace Adressbok.Services
             }
             catch (Exception ex) { Debug.WriteLine(ex); }
         }
-        private void LoadContacts()
+
+        /// <summary>
+        /// Laddar befintliga kontakter från fil.
+        /// </summary>
+        public void LoadContacts()
         {
             var existingContactsJson = _fileService.GetContactFromFile();
             if (!string.IsNullOrEmpty(existingContactsJson))
@@ -35,6 +79,9 @@ namespace Adressbok.Services
             }
         }
 
+        /// <summary>
+        /// Hämtar och visar alla kontakter.
+        /// </summary>
         public IEnumerable<Contact> GetAllContacts()
         {
             try
@@ -45,7 +92,7 @@ namespace Adressbok.Services
                 {
                     _contactList = JsonConvert.DeserializeObject<List<Contact>>(content)!;
                     Console.WriteLine("All Contacts:");
-                    
+
                     foreach (var contact in _contactList)
                     {
                         Console.WriteLine($"{contact.FirstName} {contact.LastName}");
@@ -63,6 +110,9 @@ namespace Adressbok.Services
             return _contactList;
         }
 
+        /// <summary>
+        /// Lägger till en ny kontakt och sparar den.
+        /// </summary>
         public void AddContact()
         {
             Console.Clear();
@@ -92,6 +142,9 @@ namespace Adressbok.Services
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Tar bort en kontakt med hjälp av e-postadress.
+        /// </summary>
         public void RemoveContact()
         {
             Console.Clear();
@@ -102,7 +155,7 @@ namespace Adressbok.Services
             Contact? contactToRemove = _contactList.FirstOrDefault(c => c.Email == emailToRemove);
 
             if (contactToRemove != null)
-            {                
+            {
                 _contactList.Remove(contactToRemove);
                 Console.Clear();
                 Console.WriteLine($"Contact with the email: {emailToRemove} has been removed.");
@@ -115,6 +168,36 @@ namespace Adressbok.Services
             {
                 Console.Clear();
                 Console.WriteLine($"No contact with the email: {emailToRemove} was found, please try again.");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+        }
+        public void ShowSpecificContact()
+        {
+            Console.Clear();
+            LoadContacts();
+            Console.Write("Enter the Email of the contact you would like to view: ");
+            string? emailToView = Console.ReadLine();
+
+            Contact? contactToView = _contactList.FirstOrDefault(c => c.Email == emailToView);
+
+            if (contactToView != null)
+            {
+                Console.Clear();
+                Console.WriteLine($"Contact with the email: {emailToView} has been found.");
+                Console.WriteLine(contactToView.FirstName);
+                Console.WriteLine(contactToView.LastName);
+                Console.WriteLine(contactToView.PhoneNumber);
+                Console.WriteLine(contactToView.Address);
+                Console.WriteLine(contactToView.Email);
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine($"No contact with the email: {emailToView} was found, please try again.");
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }

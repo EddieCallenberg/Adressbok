@@ -48,7 +48,7 @@ public class ContactServiceTests
     {
         // Arrange
         var fileServiceMock = new Mock<IFileService>();
-        var contactService = new ContactService(); 
+        var contactService = new ContactService(new FileService(@"C:\CSharp-projects-school\test-contacts.json"));
 
         fileServiceMock.Setup(x => x.SaveContactToFile(It.IsAny<string>())).Returns(true);
         fileServiceMock.Setup(x => x.GetContactFromFile()).Returns("{\"Email\":\"minnie@domain.com\"}");
